@@ -1,44 +1,83 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>calculator app</title>
-
-  <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-  <div class="container">
-    <div class="calculator">
-      <input type="text" placeholder="0" id="output-screen">
-      <button onclick="clr()">CL</button>
-      <button onclick="del()">DEL</button>
-      <button onclick="display('%')">%</button>
-      <button onclick="display('/')">/</button>
-      <button onclick="display('7')">7</button>
-      <button onclick="display('8')">8</button>
-      <button onclick="display('9')">9</button>
-      <button onclick="display('*')">*</button>
-      <button onclick="display('4')">4</button>
-      <button onclick="display('5')">5</button>
-      <button onclick="display('6')">6</button>
-      <button onclick="display('-')">-</button>
-      <button onclick="display('1')">1</button>
-      <button onclick="display('2')">2</button>
-      <button onclick="display('3')">3</button>
-      <button onclick="display('+')">+</button>
-      <button onclick="display('.')">.</button>
-      <button onclick="display('0')">0</button>
-      <button onclick="calculate()" class="equal">=</button>
-    </div>
+ <!DOCTYPE html>   
+ <html>
+ <head>
+ <style>   
+ .calculator {  
+  background: #ccc;    
+  border-radius: 50%;  
+  width: 200px;     
+  height: 200px;     
+ }  
+ .display {   
+  background: #fff;     
+  width: 180px;     
+  height: 30px;     
+  border-radius: 5px;      
+  margin: 10px;   
+  text-align: right;     
+  padding: 5px 10px;    
+ }
+ .btns {  
+  display: grid;  
+  grid-template-columns: repeat(4, 50px);  
+  grid-gap: 5px;
+ }
+ button {  
+  width: 50px;     
+  height: 30px;      
+  border-radius: 5px;  
+  border: 1px solid #777;  
+ }
+ </style>
+ </head>  
+ <body>   
+ <div class="calculator">
+  <div class="display">0</div>
+  <div class="btns">
+   <button onclick="cal('7')">7</button>       
+   <button onclick="cal('8')">8</button>        
+   <button onclick="cal('9')">9</button>
+   <button onclick="op('+')">+</button>    
+   <button onclick="cal('4')">4</button>       
+   <button onclick="cal('5')">5</button>
+   <button onclick="cal('6')">6</button>
+   <button onclick="op('-')">-</button>     
+   <button onclick="cal('1')">1</button>        
+   <button onclick="cal('2')">2</button>
+   <button onclick="cal('3')">3</button>
+   <button onclick="op('*')">*</button>    
+   <button onclick="cal('0')">0</button>         
+   <button onclick="cal('.')">.</button>
+   <button onclick="eq()">=</button>    
+   <button onclick="op('/')">/</button>  
+ 
   </div>
-
-  <script src="main.js"></script>
-
-
-</body>
-
-</html>
+ </div> 
+ <script>
+ let display = document.querySelector('.display')      
+ let num1 = '', operator = '', num2 = ''   
+ let result = ''   
+ 
+ function cal(n) {         
+   result += n      
+   display.innerText = result     
+ }    
+  
+ function op(o) {     
+   operator = o    
+   result += o    
+   display.innerText = result + num2      
+ }       
+ 
+ function eq() {       
+   let res = 0      
+   if (operator == '+') res = Number(num1) + Number(num2)        
+   if (operator == '-') res = num1 - num2       
+   if (operator == '*') res = num1 * num2       
+   if (operator == '/') res = num1 / num2   
+   display.innerText = res      
+   result = ''     
+ }
+ </script>
+ </body>
+ </html>
